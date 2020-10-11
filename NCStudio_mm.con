@@ -1,0 +1,38 @@
+; NCStudio postprocessor
+; Author: Vasily Biryukov <kray74vb@gmail.com>
+
+DESCRIPTION = "NCStudio (mm) (*.nc)"
+FILE_EXTENSION = "nc"
+UNITS = MM
+END_OF_LINE = "[13][10]"
+
+; Line numbering
+LINE_NUM_START = 1
+LINE_NUM_INCREMENT = 1
+
+; Format
+FORMAT = [N|@|N|.0]
+FORMAT = [F|@| F|.0]
+FORMAT = [X|#| X|.2]
+FORMAT = [Y|#| Y|.2]
+FORMAT = [Z|#| Z|.2]
+FORMAT = [SZ|#| Z|.2]
+FORMAT = [Radius|#| R|.2]
+
+; Program start
+START = "[N] G01[SZ]"
+
+; Moves
+RAPID_RATE_MOVE        = "[N] G00[X][Y][Z]"
+FIRST_FEED_RATE_MOVE   = "[N] G01[X][Y][Z][F]"
+FEED_RATE_MOVE         = "[N] G01[X][Y][Z]"
+
+; Arcs
+FIRST_CW_ARC_MOVE      = "[N] G02[X][Y][Radius][F]"
+CW_ARC_MOVE            = "[N] G02[X][Y][Radius]"
+FIRST_CCW_ARC_MOVE     = "[N] G03[X][Y][Radius][F]"
+CCW_ARC_MOVE           = "[N] G03[X][Y][Radius]"
+
+; Program end
+END = "[N] M05"
+END = "[N] M30"
